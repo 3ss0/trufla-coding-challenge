@@ -9,7 +9,7 @@ export class ValuesModalComponent implements OnInit {
   @Input() elem_values;
   @Input() elem_type;
   @Output() values:EventEmitter<any> = new EventEmitter();
-  constructor(private modal:NgbActiveModal) {
+  constructor(public modal:NgbActiveModal) {
 
   }
 

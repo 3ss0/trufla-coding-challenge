@@ -17,7 +17,7 @@ export class ValidationsModalComponent implements OnInit {
   elementsRules=elementsValidations;
   validationDropdownSettings : IDropdownSettings= {};
   selectedRules=[];
-  constructor(private modal: NgbActiveModal) { 
+  constructor(public modal: NgbActiveModal) { 
   }
 
   ngOnInit() {
