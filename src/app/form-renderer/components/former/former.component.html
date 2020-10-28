@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-12 d-flex justify-content-center">
+        <div *ngIf="errors.length">
+            <ul class="errors">
+                <li *ngFor="let error of errors">
+                    enter type for element number {{error}}
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="!errors.length" [class]="formObject.formClass+' my-form'" >
+            <form [formGroup]="myForm">
+                <div class="elements-container">
+                    <div class="form-group" *ngFor="let elem of formElements;index as i">
+                        <label  *ngIf="elem.showLabel">{{elem.label}}</label>
+                        <input type="text" [formControlName]="elem.name" *ngIf="elem.type=='text'" >
+                        <div *ngIf="elem.type=='checkbox'"  class="form-group checkbox">
+                            <div *ngFor="let option  of elem.values; let i=index">
+                                <label>
+                                    <input type="checkbox" [checked]="option.checked" [value]="option.value" (change)="onCheckChange($event,elem.name)">
+                                    {{option.label}}
+                                  </label>
+                            </div>
+                        </div>
+                        <div *ngIf="elem.type=='radio'"  class="form-group radio">
+                            <div *ngFor="let option  of elem.values; let i=index">
+                                <label>
+                                    <input type="radio" [name]="option.name" [checked]="option.checked" [value]="option.value" (change)="onCheckChange($event,elem.name)">
+                                    {{option.label}}
+                                  </label>
+                            </div>
+                        </div>
+                        <div *ngIf="elem.type=='select'"  class="form-group">
+                            <select class="form-control" [formControlName]="elem.name">
+                                <option [ngValue]="null" [disabled]="true">Select</option>
+                                <option *ngFor="let option of elem.values" [value]="option.value" >{{option.label}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="elem.hasValidations" class="errors">
+                            <div *ngIf="checkError(elem.name,'required')">
+                                it is required.
+                            </div>
+                            <div *ngIf="checkError(elem.name,'minlength')">
+                                it must be at least {{elem.min}} characters long.
+                            </div>
+                            <div *ngIf="checkError(elem.name,'maxlength')">
+                                it must be at max {{elem.max}} characters long.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button (click)="save();" [disabled]="myForm.invalid" class="btn btn-success" type="submit" value="Submit">Submit</button>
+                    <button (click)="reset();" *ngIf="formObject.showCancel" class="btn btn-danger" type="reset" value="Reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

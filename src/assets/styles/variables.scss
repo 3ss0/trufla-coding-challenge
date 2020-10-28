@@ -1,0 +1,26 @@
+$primary: #6d708b;
+$primary-shade: #3a3d59;
+$secondary: #e4e6ff;
+$main-background: #ffffff;
+$main-font-family: "Open Sans", sans-serif;
+$color-gray: #707070;
+$color-gray-light: #d4d4d4;
+$color-gray-dark: #828282;
+$color-blue: #1492e7;
+
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+
+%flex-align {
+  display: flex;
+  align-items: center;
+}
+
+%flex-align-justify {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

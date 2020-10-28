@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Options & Values</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="d-flex justify-content-center" *ngIf="!elem_values.length">
+        <button class="btn btn-success" (click)="addValue();">add option</button>
+    </div>
+
+    <div class="row">
+        <div class="col-12 d-flex  option-item" *ngFor="let option of elem_values; let i=index">
+            <div class="form-group">
+                <input type="text"  placeholder="enter option label" class="form-control " [(ngModel)]="option.label" />
+            </div>
+            <div class="form-group">
+                <input type="text"  placeholder="enter option value" class="form-control " [(ngModel)]="option.value" />
+            </div>
+            <div class="form-group d-flex align-items-center " *ngIf="false">
+                <label for="checked_{{i}}">checked</label>
+                <input id="checked_{{i}}"  type="checkbox"  class="form-control " [(ngModel)]="option.checked" />
+            </div>
+            <button  (click)="addValue();" type="button" class="btn btn-success">add</button>
+            <button  (click)="removeValue(i);" type="button" class="btn btn-danger">remove</button>
+        </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <button type="button" ngbAutofocus class="btn btn-danger" (click)="emit();">Save</button>
+</div>

@@ -1,0 +1,51 @@
+<div class="row builder-row">
+    <div class="col-12">
+        <h4>Form Settings</h4>
+        <div class="d-flex justify-content-center">
+            <div class="form-group d-flex form-settings justify-content-center">
+                <label for="showCancel">Show Reset Button</label>
+                <input id="showCancel" (change)="renderForm();" type="checkbox"  class="form-control " [(ngModel)]="formObject.showCancel" />
+            </div>
+            <div class="form-group">
+                <select class="form-control" (change)="renderForm();" [(ngModel)]="formObject.formClass">
+                    <option [ngValue]="null" [disabled]="true">Select form style</option>
+                    <option *ngFor="let option of formStyles" [value]="option.value" >{{option.label}}</option>
+                </select>
+            </div>
+        </div>
+        <h4>Form Elements</h4>
+        <div class="form-builder-row d-flex align-items-center justify-content-center" *ngFor="let elem of formObject.elements ;index as i">
+            <div>
+                {{i+1}}-
+            </div>
+            <div class="_elem">
+                <select class="form-control" (change)="renderForm();" [(ngModel)]="elem.type">
+                    <option [ngValue]="null" [disabled]="true">Select element type</option>
+                    <option *ngFor="let option of formTypes" [value]="option.value" >{{option.label}}</option>
+                </select>
+            </div>
+            <div class="_elem label">
+                <input type="text" (change)="renderForm();" placeholder="label text" class="form-control " [(ngModel)]="elem.label" />
+            </div>
+            <div class="_elem check">
+                <label for="showLabel">Show Label</label>
+                <input id="showLabel" (change)="renderForm();" type="checkbox"  class="form-control " [(ngModel)]="elem.showLabel" />
+            </div>
+            <div class="_elem validation ">
+                <button *ngIf="elem.type!='radio'&&elem.type!='checkbox'" [ngClass]="{'disabled':!elem.type}" (click)="openValidations(elem.type,elem.validations,i);" type="button" class="btn btn-info">validation rules</button>
+            </div>
+            <div class="_elem action">
+                <button [ngClass]="{'disabled':!elem.type}" *ngIf="elem.type!=='text'" (click)="openValues(elem.type,elem.values,i);" type="button" class="btn btn-info">values</button>
+            </div>
+            <div class="_elem action">
+                <button  (click)="addNewElem();" type="button" class="btn btn-success">add</button>
+            </div>
+            <div class="_elem action">
+                <button (click)="removeElem(i);" *ngIf="i!=0" type="button" class="btn btn-danger">remove</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <textarea [(ngModel)]="form_json" name="form_json" rows="10" cols="60" required></textarea>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Validation Rules</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+            <form [formGroup]="validationsForm">
+                <div class="form-group">
+                        <ng-multiselect-dropdown
+                        formControlName="rules"
+                        [placeholder]="'Select validation rules'"
+                        [data]="elementsRules[elem_type]"
+                        [settings]="validationDropdownSettings"
+                        (onSelect)="select($event);"
+                        (onDeSelect)="deselect($event)"
+                        >
+                        </ng-multiselect-dropdown>
+                </div>
+                <div *ngIf="elem_type=='text'" class="form-group d-flex max-min">
+                    <div *ngIf="selectedRules.includes('minLength')">
+                        <label for="minLength">Min Length</label>
+                        <input id="minLength" type="number"  min="1" formControlName="minLength"  class="form-control " />
+                    </div>
+                    <div *ngIf="selectedRules.includes('maxLength')">
+                        <label for="maxLength">Max Length</label>
+                        <input id="maxLength" type="number"  min="1" formControlName="maxLength"  class="form-control " />
+                    </div>
+                </div>
+            </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <button type="button" ngbAutofocus class="btn btn-danger" (click)="emit()">Save</button>
+</div>

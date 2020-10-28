@@ -1,0 +1,47 @@
+.errors {
+  color: #f1838d;
+}
+.my-form {
+  border: 2px solid #b2b2b2;
+  width: 80%;
+  margin: 0 auto;
+  min-height: 300px;
+  padding: 20px;
+}
+.actions {
+  display: flex;
+  justify-content: center;
+  .btn {
+    margin-right: 30px;
+  }
+}
+.elements-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.form-group {
+  label {
+    display: block;
+  }
+}
+
+.single {
+  .form-group {
+    flex: 0 1 100%;
+  }
+}
+.double {
+  .form-group {
+    flex: 0 1 48%;
+  }
+}
+.form-group {
+  .checkbox,
+  .radio {
+    display: flex;
+    justify-content: center;
+    div {
+      margin-right: 10px;
+    }
+  }
+}

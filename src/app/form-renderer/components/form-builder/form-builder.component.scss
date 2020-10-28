@@ -1,0 +1,46 @@
+.builder-row {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  .form-settings {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form-control {
+      width: 25px;
+      margin-left: 10px;
+    }
+  }
+}
+.form-builder-row {
+  .disabled {
+    pointer-events: none;
+  }
+  margin-bottom: 25px;
+  ._elem {
+    width: 20%;
+    margin-right: 10px;
+
+    &.action {
+      width: 100px;
+    }
+    &.validation {
+      width: 150px;
+    }
+    &.label {
+      width: 150px;
+    }
+    .btn {
+      width: 100%;
+    }
+    &.check {
+      width: 125px;
+      display: flex;
+      align-items: center;
+      .form-control {
+        width: 25px;
+        margin-left: 10px;
+      }
+    }
+  }
+}
